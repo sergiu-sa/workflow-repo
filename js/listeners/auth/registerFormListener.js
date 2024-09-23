@@ -1,6 +1,6 @@
 import { register } from "../../api/auth/register.js";
 import { displayMessage } from "../../ui/common/displayMessage.js";
-import messages from "../../constants/messages.js";
+import MESSAGES from "../../constants/messages.js";
 
 async function handleRegisterSubmit(event) {
   event.preventDefault();
@@ -23,7 +23,7 @@ async function handleRegisterSubmit(event) {
     displayMessage(
       messageContainer,
       "success",
-      messages.en.registrationSuccess
+      MESSAGES.en.registrationSuccess
     );
     form.reset();
   } catch (error) {

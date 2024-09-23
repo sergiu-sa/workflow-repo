@@ -1,7 +1,7 @@
-const messages = {
+const MESSAGES = {
   en: {
     registrationSuccess: "Registration successful!",
   },
 };
 
-export default messages;
+export default MESSAGES;

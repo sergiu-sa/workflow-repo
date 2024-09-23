@@ -1,6 +1,7 @@
 import { login } from "../../api/auth/login.js";
 import { displayMessage } from "../../ui/common/displayMessage.js";
 import { saveToken, saveUser } from "../../utils/storage.js";
+import { validateLoginForm } from "../../utils/validation.js";
 
 async function handleLoginSubmit(event) {
   event.preventDefault();
@@ -14,6 +15,16 @@ async function handleLoginSubmit(event) {
 
   const formData = new FormData(form);
   const profile = Object.fromEntries(formData.entries());
+
+  const validationResult = validateLoginForm(profile.email, profile.password);
+
+  if (!validationResult.isValid) {
+    const errorHtml = validationResult.errors
+      .map((error) => `<p class="text-red-500">${error}</p>`)
+      .join("");
+    displayMessage(messageContainer, "error", errorHtml);
+    return;
+  }
 
   fieldset.disabled = true;
   submitButton.textContent = "Logging in...";
