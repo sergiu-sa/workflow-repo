@@ -1,12 +1,10 @@
-import { PASSWORD_MIN_LENGTH } from "../constants/settings.js";
-
 export function validateEmail(email) {
   const emailRegex = /^[^\s@]+@(stud\.noroff\.no|noroff\.no)$/;
   return emailRegex.test(email);
 }
 
 export function validatePassword(password) {
-  return password.length >= PASSWORD_MIN_LENGTH;
+  return password.length >= 8;
 }
 
 export function validateLoginForm(email, password) {
@@ -17,9 +15,7 @@ export function validateLoginForm(email, password) {
   }
 
   if (!validatePassword(password)) {
-    errors.push(
-      `Password must be at least ${PASSWORD_MIN_LENGTH} characters long.`
-    );
+    errors.push(`Password must be at least 8 characters long.`);
   }
 
   return {

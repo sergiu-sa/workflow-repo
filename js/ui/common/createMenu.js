@@ -1,4 +1,5 @@
 import { getUsername } from "../../utils/storage.js";
+import { isActivePath } from "../../utils/userInterface.js";
 
 export function createMenu() {
   const container = document.querySelector("#menu-container");
@@ -6,18 +7,10 @@ export function createMenu() {
   const username = getUsername();
 
   const createNavLink = (href, text) => {
-    let isActive;
-    if (href === "/") {
-      if (currentPath === "/" && text !== "Logo") {
-        isActive = true;
-      }
-    } else {
-      isActive = currentPath.includes(href) && text !== "Logo here";
-    }
-
+    const isActive = isActivePath(href, currentPath) && text !== "Logo";
     const activeClass = isActive
-      ? "text-blue-300 border-b-2 border-blue-300"
-      : "text-white hover:text-blue-200 hover:border-b-2 hover:border-blue-200";
+      ? "text-blue-300"
+      : "text-white hover:text-blue-200";
     return `<a href="${href}" class="${activeClass} py-2 px-3 font-medium transition-colors duration-200 ${
       isActive ? "font-bold" : ""
     }">${text}</a>`;

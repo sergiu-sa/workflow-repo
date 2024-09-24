@@ -1,6 +1,7 @@
 const MESSAGES = {
   en: {
     registrationSuccess: "Registration successful!",
+    invalidationError: "Invalid input",
   },
 };
 
