@@ -15,7 +15,7 @@ export async function register(user) {
   const json = await response.json();
 
   if (!response.ok) {
-    throw new Error(json.errors?.[0]?.message || "Registration failed");
+    throw new Error("Registration failed");
   }
 
   return json;

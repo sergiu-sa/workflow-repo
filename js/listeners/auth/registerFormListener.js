@@ -7,16 +7,11 @@ async function handleRegisterSubmit(event) {
   const form = event.target;
 
   const messageContainer = document.querySelector("#message-container");
-  const fieldset = form.querySelector("fieldset");
-  const submitButton = form.querySelector('button[type="submit"]');
 
   messageContainer.innerHTML = "";
 
   const formData = new FormData(form);
   const profile = Object.fromEntries(formData.entries());
-
-  fieldset.disabled = true;
-  submitButton.textContent = "Registering...";
 
   try {
     await register(profile);
@@ -28,9 +23,6 @@ async function handleRegisterSubmit(event) {
     form.reset();
   } catch (error) {
     displayMessage(messageContainer, "error", error.message);
-  } finally {
-    fieldset.disabled = false;
-    submitButton.textContent = "Register";
   }
 }
 
