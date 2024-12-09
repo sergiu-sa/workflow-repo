@@ -7,19 +7,17 @@ export function validatePassword(password) {
   return password.length >= 8;
 }
 
-export function validateLoginForm(email, password) {
-  const errors = [];
+export function validateForm(email, password) {
+  const errors = {};
 
   if (!validateEmail(email)) {
-    errors.push("Please enter a noroff.no or stud.noroff.no email address.");
+    errors.email = "Please enter a valid Noroff email address";
   }
-
   if (!validatePassword(password)) {
-    errors.push(`Password must be at least 8 characters long.`);
+    errors.password = "Password must be at least 8 characters";
   }
-
   return {
-    isValid: errors.length === 0,
-    errors: errors,
+    isValid: Object.keys(errors).length === 0,
+    errors,
   };
 }
