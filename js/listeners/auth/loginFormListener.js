@@ -1,7 +1,7 @@
 import { login } from "../../api/auth/login.js";
 import { displayMessage } from "../../ui/common/displayMessage.js";
 import { saveToken, saveUser } from "../../utils/storage.js";
-import { validateLoginForm } from "../../utils/validation.js";
+import { validateForm } from "../../utils/validation.js";
 
 async function handleLoginSubmit(event) {
   event.preventDefault();
@@ -16,7 +16,7 @@ async function handleLoginSubmit(event) {
   const formData = new FormData(form);
   const profile = Object.fromEntries(formData.entries());
 
-  const validationResult = validateLoginForm(profile.email, profile.password);
+  const validationResult = validateForm(profile.email, profile.password);
 
   if (!validationResult.isValid) {
     const errorHtml = validationResult.errors
